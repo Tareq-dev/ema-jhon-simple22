@@ -1,6 +1,6 @@
 import React from "react";
 import "./Cart.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Cart = (props) => {
   const { cart } = props;
@@ -9,7 +9,7 @@ const Cart = (props) => {
   let quantity = 0;
   for (const product of cart) {
     quantity = quantity + product.quantity;
-    total = total + product.price* product.quantity;
+    total = total + product.price * product.quantity;
     shipping = shipping + product.shipping;
   }
   const tax = parseFloat((total * 0.1).toFixed(2));
@@ -22,12 +22,8 @@ const Cart = (props) => {
       <p>Total Shipping Charge: ${shipping}</p>
       <p>Tax : ${tax}</p>
       <h4>Grand Total : ${grandTotal}</h4>
-      <div>
-      <button className="bg-black text-white px-3 py-2 rounded-lg text-xl font-bold mx-2 mt-14"><Link to="/order">Review Order</Link></button>
-      </div>
-      <div>
-     
-      </div>
+      <div>{props.children}</div>
+      <div></div>
     </div>
   );
 };

@@ -29,10 +29,10 @@ function Order() {
       <div className="order-container">
         <Cart cart={cart}>
           <button
-            onClick={() => navigate("/inventory")}
+            onClick={() => navigate("/shipment")}
             className="bg-black text-white px-3 py-2 rounded-lg text-xl font-bold mx-2 mt-5"
           >
-            Procced Checkout
+            Procced Shipping
           </button>
         </Cart>
       </div>

@@ -22,13 +22,17 @@ const SignUp = () => {
     if (password.length < 6) {
       setError("Password must be at least 6 characters");
     }
-
+    setEmail("");
+    setPassword("");
+    setConfirmPassword("");
     // return shop page after route
 
     if (user) {
-      navigate("/inventory");
+      navigate("/");
     }
-    createUserWithEmailAndPassword(email, password).then(() => {});
+    createUserWithEmailAndPassword(email, password).then(() => {
+      navigate("/");
+    });
   };
 
   return (

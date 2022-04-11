@@ -3,12 +3,14 @@ import useProducts from "../../Hooks/useProducts";
 import { addToDb } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../product/Product";
+import { useNavigate } from 'react-router-dom';
 import "./Shop.css";
 
 const Shop = () => {
   const [products] = useProducts();
 
   const [cart, setCart] = useCart(products);
+  const navigate = useNavigate();
 
   const handleAddToCart = (selectedProduct) => {
     let newCart = [];
@@ -36,7 +38,14 @@ const Shop = () => {
         ))}
       </div>
       <div className="order-container">
-        <Cart cart={cart} />
+        <Cart cart={cart}>
+        <button
+            onClick={() => navigate("/order")}
+            className="bg-black text-white px-3 py-2 rounded-lg text-xl font-bold mx-2 mt-5"
+          >
+            Review Order
+          </button>
+          </Cart>
       </div>
     </div>
   );
