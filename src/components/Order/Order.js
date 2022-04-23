@@ -10,6 +10,9 @@ function Order() {
   const [products] = useProducts();
   const [cart, setCart] = useCart(products);
   const navigate = useNavigate();
+
+  //remove products 
+
   const handleRemoveProduct = (item) => {
     const rest = cart.filter((pd) => pd.id !== item.id);
     setCart(rest);
