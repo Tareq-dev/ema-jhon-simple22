@@ -1,5 +1,4 @@
 import useCart from "../../Hooks/useCart";
-import useProducts from "../../Hooks/useProducts";
 import { addToDb } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import Product from "../product/Product";
@@ -15,6 +14,7 @@ const Shop = () => {
   const [size, setSize] = useState(10);
   const navigate = useNavigate();
 
+  console.log(products);
   useEffect(() => {
     fetch(`http://localhost:5000/product?page=${page}&size=${size}`)
       .then((res) => res.json())
