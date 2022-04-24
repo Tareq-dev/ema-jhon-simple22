@@ -9,7 +9,7 @@ const ReviewItems = (props) => {
   return (
     <div className="p-2 w-full flex border border-neutral-300 items-center">
       <img className="w-20 h-20 rounded-lg" src={img} alt="img" />
-      <div className="flex items-center">
+      <div className="flex flex-auto items-center justify-between">
         <div className="mx-3">
           <h4 className="" title={name}>
             {name.lenght > 20 ? name.slice(0, 10) + "..." : name}

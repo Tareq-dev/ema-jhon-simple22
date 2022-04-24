@@ -8,18 +8,17 @@ import { useEffect, useState } from "react";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useCart(products);
+  const [cart, setCart] = useCart();
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
   const navigate = useNavigate();
 
-  console.log(products);
   useEffect(() => {
     fetch(`http://localhost:5000/product?page=${page}&size=${size}`)
       .then((res) => res.json())
       .then((data) => setProducts(data));
-  }, [page,size]);
+  }, [page, size]);
 
   useEffect(() => {
     fetch("http://localhost:5000/productCount")
@@ -33,17 +32,19 @@ const Shop = () => {
 
   const handleAddToCart = (selectedProduct) => {
     let newCart = [];
-    const exists = cart.find((product) => product._id === selectedProduct.id);
+    const exists = cart.find((product) => product._id === selectedProduct._id);
     if (!exists) {
       selectedProduct.quantity = 1;
       newCart = [...cart, selectedProduct];
     } else {
-      const rest = cart.filter((product) => product._id !== selectedProduct.id);
+      const rest = cart.filter(
+        (product) => product._id !== selectedProduct._id
+      );
       exists.quantity = exists.quantity + 1;
       newCart = [...rest, exists];
     }
     setCart(newCart);
-    addToDb(selectedProduct.id);
+    addToDb(selectedProduct._id);
   };
   return (
     <div className="shop-container">
@@ -55,23 +56,6 @@ const Shop = () => {
             product={product}
           />
         ))}
-
-        <div className="pagination mt-5 mb-5">
-          {[...Array(pageCount).keys()].map((number) => (
-            <button
-              onClick={() => setPage(number)}
-              className={page === number ? "selectedPage" : ""}
-            >
-              {number + 1}
-            </button>
-          ))}
-          <select onChange={(e)=>setSize(e.target.value)}>
-          <option value="5">5</option>
-          <option value="10" selected>10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-          </select>
-        </div>
       </div>
       <div className="order-container">
         <Cart cart={cart}>
@@ -82,6 +66,25 @@ const Shop = () => {
             Review Order
           </button>
         </Cart>
+      </div>
+      <div className="pagination mt-5 mb-5 flex justify-center">
+        {[...Array(pageCount).keys()].map((number) => (
+          <button
+            key={number._id}
+            onClick={() => setPage(number)}
+            className={page === number ? "selectedPage" : ""}
+          >
+            {number + 1}
+          </button>
+        ))}
+        <select onChange={(e) => setSize(e.target.value)} defaultValue='10'>
+          <option value="5">5</option>
+          <option value="10">
+            10
+          </option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
       </div>
     </div>
   );
