@@ -15,13 +15,15 @@ const Shop = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/product?page=${page}&size=${size}`)
+    fetch(
+      `https://infinite-dawn-21979.herokuapp.com/product?page=${page}&size=${size}`
+    )
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, [page, size]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/productCount")
+    fetch("https://infinite-dawn-21979.herokuapp.com/productCount")
       .then((res) => res.json())
       .then((data) => {
         const count = data.count;
@@ -77,11 +79,9 @@ const Shop = () => {
             {number + 1}
           </button>
         ))}
-        <select onChange={(e) => setSize(e.target.value)} defaultValue='10'>
+        <select onChange={(e) => setSize(e.target.value)} defaultValue="10">
           <option value="5">5</option>
-          <option value="10">
-            10
-          </option>
+          <option value="10">10</option>
           <option value="15">15</option>
           <option value="20">20</option>
         </select>

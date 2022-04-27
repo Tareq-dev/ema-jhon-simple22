@@ -8,7 +8,7 @@ const useCart = () => {
     const storeCart = getStoredCart();
     const savedCart = [];
     const keys = Object.keys(storeCart);
-    fetch("http://localhost:5000/productByKeys", {
+    fetch("https://infinite-dawn-21979.herokuapp.com/productByKeys", {
       method: "POST",
       headers: {
         "content-type": "application/json",

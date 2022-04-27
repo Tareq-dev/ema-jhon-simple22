@@ -3,3 +3,10 @@
   top: 0;
   padding: 30px 20px;
 }
+@media screen and (max-width: 550px) {
+  .cart {
+    position: sticky;
+    top: 0;
+    padding: 30px 20px;
+  }
+}

@@ -39,6 +39,22 @@
   background-color: orange;
 }
 .btn-text {
-  padding-right: 8px;
+  padding: 8px;
+}
+@media screen and (max-width: 550px) {
+  .product {
+    width: 200px;
+    height: 428px;
+    border-radius: 10px 5px;
+    border: 1px solid #95a0a7;
+    margin: 10px;
+    position: relative;
+  }
+  .product img {
+    height: 186px;
+    width: 185px;
+    margin: 8px;
+    border-radius: 8px;
+  }
 }
 
